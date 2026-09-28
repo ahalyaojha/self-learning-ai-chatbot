@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Self Learning AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">✦</div>
+
+                <div>
+                    <h2>Self Learning AI</h2>
+                    <span>Intelligent Assistant</span>
+                </div>
+            </div>
+
+            <button class="new-chat-btn" id="new-chat-btn">
+                <span>＋</span>
+                New Chat
+            </button>
+
+            <div class="sidebar-section">
+                <p class="section-title">QUICK ACTIONS</p>
+
+                <button class="side-action" id="learn-btn">
+                    <span>🧠</span>
+                    Teach AI
+                </button>
+
+                <button class="side-action" id="knowledge-btn">
+                    <span>📚</span>
+                    Knowledge
+                </button>
+
+                <button class="side-action" id="history-btn">
+                    <span>💬</span>
+                    Chat History
+                </button>
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <div class="status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>AI Online</strong>
+                        <small>Ready to help</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Chat -->
+        <main class="chat-area">
+
+            <!-- Header -->
+            <header class="chat-header">
+
+                <div class="assistant-info">
+
+                    <div class="assistant-avatar">
+                        ✦
+                    </div>
+
+                    <div>
+                        <h1>AI Assistant</h1>
+
+                        <div class="online-status">
+                            <span></span>
+                            Online
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="menu-btn" id="menu-btn">
+                    ⋮
+                </button>
+
+            </header>
+
+
+            <!-- Messages -->
+            <section class="messages" id="chat-box">
+
+                <!-- Welcome -->
+                <div class="welcome">
+
+                    <div class="welcome-icon">
+                        ✦
+                    </div>
+
+                    <h2>Hello! I'm your AI assistant.</h2>
+
+                    <p>
+                        I learn from the knowledge you teach me.
+                        Ask me something and let's start a conversation.
+                    </p>
+
+                    <div class="suggestions">
+
+                        <button class="suggestion">
+                            What is Python?
+                        </button>
+
+                        <button class="suggestion">
+                            What is FastAPI?
+                        </button>
+
+                        <button class="suggestion">
+                            Explain AI
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Input Area -->
+            <div class="input-wrapper">
+
+                <form id="chat-form" class="input-container">
+
+                    <button type="button" class="attach-btn" title="More options">
+                        ＋
+                    </button>
+
+                    <input type="text" id="question" placeholder="Message your AI assistant..." autocomplete="off">
+
+                    <button type="submit" id="send-btn" class="send-btn" title="Send message">
+                        ↑
+                    </button>
+
+                </form>
+
+                <p class="input-hint">
+                    Self Learning AI can make mistakes. Verify important information.
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+    <!-- Teach AI Modal -->
+    <div class="modal-overlay" id="teach-modal">
+
+        <div class="teach-modal">
+
+            <div class="modal-header">
+                <div>
+                    <div class="modal-icon">🧠</div>
+                    <h2>Teach AI</h2>
+                    <p>Give your AI new knowledge to learn.</p>
+                </div>
+
+                <button type="button" class="close-modal" id="close-teach-modal">
+                    ×
+                </button>
+            </div>
+
+            <form id="teach-form">
+
+                <label for="teach-question">
+                    Question
+                </label>
+
+                <input type="text" id="teach-question" placeholder="e.g. What is Machine Learning?" required>
+
+                <label for="teach-answer">
+                    Answer
+                </label>
+
+                <textarea id="teach-answer" placeholder="Enter the answer you want the AI to learn..." rows="5"
+                    required></textarea>
+
+                <div id="teach-status" class="teach-status"></div>
+
+                <div class="modal-actions">
+
+                    <button type="button" class="cancel-btn" id="cancel-teach">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="teach-submit">
+                        🧠 Teach AI
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Knowledge Library Modal -->
+    <div class="modal-overlay" id="knowledge-modal">
+
+        <div class="knowledge-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <div class="modal-icon">📚</div>
+
+                    <h2>Knowledge Library</h2>
+
+                    <p>
+                        Everything your AI has learned.
+                    </p>
+                </div>
+
+                <button type="button" class="close-modal" id="close-knowledge-modal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="knowledge-top">
+
+                <div class="knowledge-count">
+                    <strong id="knowledge-count">0</strong>
+                    <span>Knowledge entries</span>
+                </div>
+
+                <input type="text" id="knowledge-search" placeholder="Search knowledge...">
+
+            </div>
+
+
+            <div id="knowledge-list" class="knowledge-list">
+
+                <div class="knowledge-loading">
+                    Loading knowledge...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Edit Knowledge Modal -->
+    <div class="modal-overlay" id="edit-modal">
+        <div class="teach-modal">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-icon">✏️</div>
+                    <h2>Edit Knowledge</h2>
+                    <p>Update what your AI has learned.</p>
+                </div>
+
+                <button type="button" class="close-modal" id="close-edit-modal">
+                    ×
+                </button>
+            </div>
+
+            <form id="edit-form">
+                <label for="edit-question">Question</label>
+
+                <input type="text" id="edit-question" placeholder="Enter the question..." required>
+
+                <label for="edit-answer">Answer</label>
+
+                <textarea id="edit-answer" placeholder="Enter the answer..." rows="5" required></textarea>
+
+                <div id="edit-status" class="teach-status"></div>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancel-edit">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="teach-submit">
+                        ✏️ Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Chat History Modal -->
+    <div class="modal-overlay" id="history-modal">
+        <div class="knowledge-modal">
+            <div class="modal-header">
+
+                <div>
+                    <div class="modal-icon">💬</div>
+                    <h2>Chat History</h2>
+                    <p>Your previous conversations.</p>
+                </div>
+
+                <button type="button" class="clear-history-btn" id="clear-history-btn">
+                    🗑️ Clear History
+                </button>
+
+                <button type="button" class="close-modal" id="close-history-modal">
+                    ×
+                </button>
+
+            </div>
+
+            <div id="history-list" class="knowledge-list">
+                <div class="knowledge-loading">
+                    Loading history...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
